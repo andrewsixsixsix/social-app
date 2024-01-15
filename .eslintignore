@@ -1,0 +1,19 @@
+# Ignore build directories
+ios/
+android/
+
+# Ignore generated files
+*.snap
+
+# Ignore node_modules
+node_modules/
+
+# Ignore logs
+logs/
+
+# Ignore coverage reports
+coverage/
+
+# Ignore temporary files
+.DS_Store
+Thumbs.db
