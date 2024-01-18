@@ -3,7 +3,11 @@
   "compilerOptions": {
     "strict": true,
     "noEmitOnError": true,
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "paths": {
+      "@components": ["components"],
+      "@styles": ["styles"]
+    }
   },
   "exclude": ["node_modules"]
 }
