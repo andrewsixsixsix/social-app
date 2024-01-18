@@ -38,7 +38,10 @@
             "deploymentTarget": "13.4"
           }
         }
-      ]
+      ],
+      ["expo-font", {
+        "fonts": ["path/to/file.ttf"]
+      }]
     ],
     "experiments": {
       "tsconfigPaths": true
