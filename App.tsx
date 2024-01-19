@@ -1,33 +1,16 @@
-import { useCallback } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { Button, Input } from '@components';
-import { colors, cStyles, fonts } from '@styles';
-
-void SplashScreen.preventAutoHideAsync();
+import { colors, cStyles } from '@styles';
 
 export default function App() {
-  const [fontsLoaded] = useFonts(fonts);
-
-  const onLayout = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
   return (
     <SafeAreaProvider>
       <SafeAreaView style={cStyles.safeArea}>
         <StatusBar style="auto" />
-        <View style={styles.container} onLayout={onLayout}>
+        <View style={styles.container}>
           <Text style={styles.title}>Social</Text>
           <View style={styles.inputs}>
             <Input
@@ -62,5 +45,10 @@ const styles = StyleSheet.create({
     rowGap: 20,
     width: '100%',
   },
-  title: { fontFamily: 'GreatVibes', fontSize: 60, paddingHorizontal: 10, marginVertical: 20 },
+  title: {
+    fontFamily: 'GreatVibes-Regular',
+    fontSize: 60,
+    paddingHorizontal: 10,
+    marginVertical: 20,
+  },
 });
