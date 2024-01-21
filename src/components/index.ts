@@ -1,2 +1,5 @@
+// buttons
 export { Button } from './button';
-export { Input } from './intput';
+
+// inputs
+export { FormInput } from './inputs';
