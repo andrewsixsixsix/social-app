@@ -1,8 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { Link } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Button, FormInput } from '@components';
 import { colors, cStyles, fonts } from '@styles';
@@ -45,46 +44,43 @@ const Login = () => {
   };
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={cStyles.safeArea}>
-        <StatusBar style="auto" />
-        <View style={styles.container}>
-          <Text style={styles.title}>Social</Text>
-          <View style={styles.inputs}>
-            <FormProvider {...form}>
-              <FormInput
-                autoCapitalize={'none'}
-                autoCorrect={false}
-                containerStyle={styles.input}
-                name={'username'}
-                placeholder={'Username'}
-                rules={usernameRules}
-              />
-              <FormInput
-                autoCapitalize={'none'}
-                autoCorrect={false}
-                containerStyle={styles.input}
-                name={'password'}
-                placeholder={'Password'}
-                rules={passwordRules}
-                secureTextEntry={true}
-              />
-            </FormProvider>
-            <Button
-              disabled={Object.keys(errors).length != 0}
-              title={'Log in'}
-              onPress={handleSubmit(login)}
+    <SafeAreaView style={cStyles.safeArea}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Social</Text>
+        <View style={styles.inputs}>
+          <FormProvider {...form}>
+            <FormInput
+              autoCapitalize={'none'}
+              autoCorrect={false}
+              containerStyle={styles.input}
+              name={'username'}
+              placeholder={'Username'}
+              rules={usernameRules}
             />
-          </View>
-          <View style={styles.signupPrompt}>
-            <Text style={styles.text}>Don't have an account? </Text>
-            <Link href={'/'} style={[styles.text, styles.link]}>
-              Sign up!
-            </Link>
-          </View>
+            <FormInput
+              autoCapitalize={'none'}
+              autoCorrect={false}
+              containerStyle={styles.input}
+              name={'password'}
+              placeholder={'Password'}
+              rules={passwordRules}
+              secureTextEntry={true}
+            />
+          </FormProvider>
+          <Button
+            disabled={Object.keys(errors).length != 0}
+            title={'Log in'}
+            onPress={handleSubmit(login)}
+          />
         </View>
-      </SafeAreaView>
-    </SafeAreaProvider>
+        <View style={styles.signupPrompt}>
+          <Text style={styles.text}>Don't have an account? </Text>
+          <Link href={'/signup/username'} style={[styles.text, styles.link]}>
+            Sign up!
+          </Link>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 };
 

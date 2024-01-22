@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     fontSize: 10,
   },
   safeArea: {
+    backgroundColor: colors.white,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
