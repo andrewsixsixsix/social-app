@@ -1,5 +1,6 @@
 // buttons
-export { Button } from './button';
+export { Button } from './buttons';
+export { PressableWrapper } from './buttons';
 
 // inputs
 export { FormInput } from './inputs';
