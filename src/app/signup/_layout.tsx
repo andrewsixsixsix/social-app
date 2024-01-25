@@ -1,12 +1,31 @@
-import { Slot, Stack } from 'expo-router';
+import { Slot, usePathname } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { SignupHeader } from '@components';
 
 const SignupLayout = () => {
+  const path = usePathname();
+
+  const getScreenTitle = () => {
+    let screenTitle: string;
+
+    switch (path) {
+      case '/signup/username':
+        screenTitle = 'Username';
+        break;
+      case '/signup/email':
+        screenTitle = 'Email';
+        break;
+      default:
+        screenTitle = '';
+    }
+
+    return screenTitle;
+  };
+
   return (
     <SafeAreaView>
-      <SignupHeader />
+      <SignupHeader title={getScreenTitle()} />
       <Slot />
     </SafeAreaView>
   );
