@@ -14,7 +14,7 @@ import { ControllerFieldState, UseControllerProps } from 'react-hook-form/dist/t
 import { colors, cStyles, fonts } from '@styles';
 
 interface IProps extends TextInputProps, UseControllerProps {
-  containerStyle: StyleProp<ViewStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
   defaultValue?: string;
 }
 
@@ -44,7 +44,7 @@ export const FormInput: React.FC<IProps> = ({ containerStyle, ...props }) => {
 const getStyles = (error: ControllerFieldState['error']) =>
   StyleSheet.create({
     container: {
-      width: '100%',
+      width: '70%',
     },
     error: {
       alignSelf: 'flex-end',

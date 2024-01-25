@@ -52,7 +52,6 @@ const Login = () => {
             <FormInput
               autoCapitalize={'none'}
               autoCorrect={false}
-              containerStyle={styles.input}
               name={'username'}
               placeholder={'Username'}
               rules={usernameRules}
@@ -60,7 +59,6 @@ const Login = () => {
             <FormInput
               autoCapitalize={'none'}
               autoCorrect={false}
-              containerStyle={styles.input}
               name={'password'}
               placeholder={'Password'}
               rules={passwordRules}
@@ -68,7 +66,7 @@ const Login = () => {
             />
           </FormProvider>
           <Button
-            disabled={Object.keys(errors).length != 0}
+            disabled={Object.keys(errors).length > 0}
             title={'Log in'}
             onPress={handleSubmit(login)}
           />
@@ -90,9 +88,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     flex: 1,
     width: '100%',
-  },
-  input: {
-    width: '70%',
   },
   inputs: {
     alignItems: 'center',
