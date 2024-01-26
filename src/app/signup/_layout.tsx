@@ -23,6 +23,8 @@ const SignupLayout = () => {
     return screenTitle;
   };
 
+  // TODO: handle tap outside to hide keyboard
+
   return (
     <SafeAreaView>
       <SignupHeader title={getScreenTitle()} />

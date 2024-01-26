@@ -6,26 +6,26 @@ import { Button, FormInput } from '@components';
 import { regex } from '@constants';
 
 interface IFormData {
-  username: string;
+  email: string;
 }
 
-const usernameRules = {
+const emailRules = {
   required: {
     value: true,
-    message: 'Username is required',
+    message: 'Email is required',
   },
   pattern: {
-    value: regex.username,
-    message: 'Invalid username',
+    value: regex.email,
+    message: 'Invalid email',
   },
-  minLength: {
-    value: 4,
-    message: 'Min length is 4 characters',
+  maxLength: {
+    value: 64,
+    message: 'Max length is 64 characters',
   },
 };
 
-const Username = () => {
-  const form = useForm<IFormData>({ defaultValues: { username: '' } });
+const Email = () => {
+  const form = useForm<IFormData>({ defaultValues: { email: '' } });
   const {
     formState: { errors },
     handleSubmit,
@@ -33,7 +33,7 @@ const Username = () => {
 
   const next: SubmitHandler<IFormData> = (data) => {
     console.log(data);
-    router.navigate('/signup/email');
+    router.navigate('/signup/name');
   };
 
   return (
@@ -42,9 +42,9 @@ const Username = () => {
         <FormInput
           autoCapitalize={'none'}
           autoCorrect={false}
-          name={'username'}
-          placeholder={'Username'}
-          rules={usernameRules}
+          name={'email'}
+          placeholder={'Email'}
+          rules={emailRules}
         />
         <Button
           disabled={Object.keys(errors).length > 0}
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Username;
+export default Email;

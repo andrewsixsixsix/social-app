@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Button, FormInput } from '@components';
 import { colors, cStyles, fonts } from '@styles';
+import { regex } from '@constants';
 
 interface IFormData {
   username: string;
@@ -12,9 +13,12 @@ interface IFormData {
 }
 
 const usernameRules = {
-  required: { value: true, message: 'Username is required' },
+  required: {
+    value: true,
+    message: 'Username is required',
+  },
   pattern: {
-    value: /^(?!.*(\.)\1)[A-Za-z_][A-Za-z0-9_.]{3,}$/,
+    value: regex.username,
     message: 'Invalid username',
   },
   minLength: {
