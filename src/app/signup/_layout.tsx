@@ -1,7 +1,6 @@
 import { Slot, usePathname } from 'expo-router';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { SignupHeader } from '@components';
+import { SafeArea, SignupHeader } from '@components';
 
 const SignupLayout = () => {
   const path = usePathname();
@@ -23,13 +22,11 @@ const SignupLayout = () => {
     return screenTitle;
   };
 
-  // TODO: handle tap outside to hide keyboard
-
   return (
-    <SafeAreaView>
+    <SafeArea>
       <SignupHeader title={getScreenTitle()} />
       <Slot />
-    </SafeAreaView>
+    </SafeArea>
   );
 };
 

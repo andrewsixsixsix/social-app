@@ -1,10 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { Link } from 'expo-router';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Button, FormInput } from '@components';
-import { colors, cStyles, fonts } from '@styles';
+import { Button, FormInput, SafeArea } from '@components';
+import { colors, fonts } from '@styles';
 import { regex } from '@constants';
 
 interface IFormData {
@@ -48,7 +47,7 @@ const Login = () => {
   };
 
   return (
-    <SafeAreaView style={cStyles.safeArea}>
+    <SafeArea>
       <View style={styles.container}>
         <Text style={styles.title}>Social</Text>
         <View style={styles.inputs}>
@@ -82,7 +81,7 @@ const Login = () => {
           </Link>
         </View>
       </View>
-    </SafeAreaView>
+    </SafeArea>
   );
 };
 
@@ -91,7 +90,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.white,
     flex: 1,
-    width: '100%',
   },
   inputs: {
     alignItems: 'center',

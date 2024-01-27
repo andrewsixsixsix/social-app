@@ -7,3 +7,6 @@ export { FormInput } from './inputs';
 
 // signup
 export { SignupHeader } from './signup';
+
+// common
+export { SafeArea } from './safe-area';
