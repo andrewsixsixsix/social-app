@@ -31,10 +31,12 @@ const Username = () => {
     handleSubmit,
   } = form;
 
-  const next: SubmitHandler<IFormData> = (data) => {
+  const submit: SubmitHandler<IFormData> = (data) => {
     console.log(data);
     router.navigate('/signup/email');
   };
+
+  const disabled = Object.keys(errors).length > 0;
 
   return (
     <View style={styles.container}>
@@ -46,11 +48,7 @@ const Username = () => {
           placeholder={'Username'}
           rules={usernameRules}
         />
-        <Button
-          disabled={Object.keys(errors).length > 0}
-          title={'Next'}
-          onPress={handleSubmit(next)}
-        />
+        <Button disabled={disabled} title={'Next'} onPress={handleSubmit(submit)} />
       </FormProvider>
     </View>
   );

@@ -42,9 +42,11 @@ const Login = () => {
     handleSubmit,
   } = form;
 
-  const login: SubmitHandler<IFormData> = (data) => {
+  const submit: SubmitHandler<IFormData> = (data) => {
     console.log(data);
   };
+
+  const disabled = Object.keys(errors).length > 0;
 
   return (
     <SafeArea>
@@ -68,11 +70,7 @@ const Login = () => {
               secureTextEntry={true}
             />
           </FormProvider>
-          <Button
-            disabled={Object.keys(errors).length > 0}
-            title={'Log in'}
-            onPress={handleSubmit(login)}
-          />
+          <Button disabled={disabled} title={'Log in'} onPress={handleSubmit(submit)} />
         </View>
         <View style={styles.signupPrompt}>
           <Text style={styles.text}>Don't have an account? </Text>

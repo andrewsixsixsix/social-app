@@ -15,6 +15,12 @@ const SignupLayout = () => {
       case '/signup/email':
         screenTitle = 'Email';
         break;
+      case '/signup/name':
+        screenTitle = 'Name';
+        break;
+      case '/signup/password':
+        screenTitle = 'Password';
+        break;
       default:
         screenTitle = '';
     }

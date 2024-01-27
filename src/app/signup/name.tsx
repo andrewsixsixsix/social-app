@@ -6,26 +6,34 @@ import { Button, FormInput } from '@components';
 import { regex } from '@constants';
 
 interface IFormData {
-  email: string;
+  firstName: string;
+  lastName: string;
 }
 
-const emailRules = {
-  required: {
-    value: true,
-    message: 'Email is required',
-  },
+const nameRules = {
   pattern: {
-    value: regex.email,
-    message: 'Invalid email',
+    value: regex.name,
+    message: 'Invalid name',
   },
   maxLength: {
-    value: 64,
-    message: 'Max length is 64 characters',
+    value: 32,
+    message: 'Max length is 32 characters',
   },
 };
+const firstNameRules = {
+  ...nameRules,
+  required: {
+    value: true,
+    message: 'First name is required',
+  },
+};
+const lastNameRules = {
+  ...nameRules,
+  required: false,
+};
 
-const Email = () => {
-  const form = useForm<IFormData>({ defaultValues: { email: '' } });
+const Name = () => {
+  const form = useForm<IFormData>({ defaultValues: { firstName: '', lastName: '' } });
   const {
     formState: { errors },
     handleSubmit,
@@ -33,7 +41,7 @@ const Email = () => {
 
   const submit: SubmitHandler<IFormData> = (data) => {
     console.log(data);
-    router.navigate('/signup/name');
+    router.navigate('/signup/password');
   };
 
   const disabled = Object.keys(errors).length > 0;
@@ -42,11 +50,18 @@ const Email = () => {
     <View style={styles.container}>
       <FormProvider {...form}>
         <FormInput
-          autoCapitalize={'none'}
+          autoCapitalize={'words'}
           autoCorrect={false}
-          name={'email'}
-          placeholder={'Email'}
-          rules={emailRules}
+          name={'firstName'}
+          placeholder={'First name'}
+          rules={firstNameRules}
+        />
+        <FormInput
+          autoCapitalize={'words'}
+          autoCorrect={false}
+          name={'lastName'}
+          placeholder={'Last name (optional)'}
+          rules={lastNameRules}
         />
         <Button disabled={disabled} title={'Next'} onPress={handleSubmit(submit)} />
       </FormProvider>
@@ -62,4 +77,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Email;
+export default Name;
