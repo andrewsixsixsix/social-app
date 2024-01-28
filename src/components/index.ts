@@ -10,3 +10,4 @@ export { SignupHeader } from './signup';
 
 // common
 export { SafeArea } from './safe-area';
+export { Social } from './social';

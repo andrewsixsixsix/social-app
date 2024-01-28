@@ -41,7 +41,7 @@ const Name = () => {
 
   const submit: SubmitHandler<IFormData> = (data) => {
     console.log(data);
-    router.navigate('/signup/password');
+    router.navigate('/signup/birthday');
   };
 
   const disabled = Object.keys(errors).length > 0;

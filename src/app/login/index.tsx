@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Link } from 'expo-router';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
-import { Button, FormInput, SafeArea } from '@components';
+import { Button, FormInput, SafeArea, Social } from '@components';
 import { colors, fonts } from '@styles';
 import { regex } from '@constants';
 
@@ -51,7 +51,7 @@ const Login = () => {
   return (
     <SafeArea>
       <View style={styles.container}>
-        <Text style={styles.title}>Social</Text>
+        <Social fontSize={60} />
         <View style={styles.inputs}>
           <FormProvider {...form}>
             <FormInput
