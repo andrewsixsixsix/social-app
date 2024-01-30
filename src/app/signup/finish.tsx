@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { Button, Social } from '@components';
-import { fonts } from '@styles';
+import { fonts, signupStyles } from '@styles';
 
 const Finish = () => {
   const email = 'email@mail.com';
@@ -9,7 +9,7 @@ const Finish = () => {
   const submit = () => {};
 
   return (
-    <View style={styles.container}>
+    <View style={[signupStyles.container, styles.container]}>
       <Text style={[styles.text, styles.title]}>Almost done!</Text>
       <Text style={styles.text}>
         {'Tap the button below to complete the signup and join\n'}
@@ -23,10 +23,7 @@ const Finish = () => {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    marginTop: 40,
     paddingHorizontal: 20,
-    rowGap: 20,
   },
   text: {
     fontFamily: fonts.montserratRegular,

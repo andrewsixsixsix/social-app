@@ -1,9 +1,10 @@
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { router } from 'expo-router';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 import { Button, FormInput } from '@components';
 import { UseControllerProps } from 'react-hook-form/dist/types/controller';
+import { signupStyles } from '@styles';
 
 interface IFormData extends Record<string, string> {
   password: string;
@@ -53,7 +54,7 @@ const Password = () => {
   const disabled = Object.keys(errors).length > 0;
 
   return (
-    <View style={styles.container}>
+    <View style={signupStyles.container}>
       <FormProvider {...form}>
         <FormInput
           autoCapitalize={'none'}
@@ -76,13 +77,5 @@ const Password = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    marginTop: 40,
-    rowGap: 20,
-  },
-});
 
 export default Password;

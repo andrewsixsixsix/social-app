@@ -1,9 +1,10 @@
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { router } from 'expo-router';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 import { Button, FormInput } from '@components';
 import { regex } from '@constants';
+import { signupStyles } from '@styles';
 
 interface IFormData {
   username: string;
@@ -39,7 +40,7 @@ const Username = () => {
   const disabled = Object.keys(errors).length > 0;
 
   return (
-    <View style={styles.container}>
+    <View style={signupStyles.container}>
       <FormProvider {...form}>
         <FormInput
           autoCapitalize={'none'}
@@ -53,13 +54,5 @@ const Username = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    marginTop: 40,
-    rowGap: 20,
-  },
-});
 
 export default Username;

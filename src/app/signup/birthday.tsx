@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { router } from 'expo-router';
 import DatePicker from 'react-native-date-picker';
 
 import { Button } from '@components';
+import { signupStyles } from '@styles';
 
 const maximumDate = () => {
   const year = new Date().getFullYear() - 5;
@@ -33,7 +34,7 @@ const Birthday = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={signupStyles.container}>
       <DatePicker
         date={dateOfBirth}
         maximumDate={maximumDate()}
@@ -45,13 +46,5 @@ const Birthday = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    marginTop: 40,
-    rowGap: 20,
-  },
-});
 
 export default Birthday;

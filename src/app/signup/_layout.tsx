@@ -1,4 +1,4 @@
-import { Slot, usePathname } from 'expo-router';
+import { Stack, usePathname } from 'expo-router';
 
 import { SafeArea, SignupHeader } from '@components';
 
@@ -34,7 +34,7 @@ const SignupLayout = () => {
   return (
     <SafeArea>
       <SignupHeader title={getScreenTitle()} />
-      <Slot />
+      <Stack screenOptions={{ headerShown: false }} />
     </SafeArea>
   );
 };

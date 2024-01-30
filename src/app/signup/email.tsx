@@ -4,6 +4,7 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 import { Button, FormInput } from '@components';
 import { regex } from '@constants';
+import { colors, signupStyles } from '@styles';
 
 interface IFormData {
   email: string;
@@ -39,7 +40,7 @@ const Email = () => {
   const disabled = Object.keys(errors).length > 0;
 
   return (
-    <View style={styles.container}>
+    <View style={signupStyles.container}>
       <FormProvider {...form}>
         <FormInput
           autoCapitalize={'none'}
@@ -53,13 +54,5 @@ const Email = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    marginTop: 40,
-    rowGap: 20,
-  },
-});
 
 export default Email;
