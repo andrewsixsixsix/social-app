@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { Button, Social } from '@components';
 import { fonts, signupStyles } from '@styles';
+import { s } from '@utils';
 
 const Finish = () => {
   const email = 'email@mail.com';
@@ -23,15 +24,15 @@ const Finish = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 20,
+    paddingHorizontal: s(20),
   },
   text: {
     fontFamily: fonts.montserratRegular,
-    fontSize: 14,
+    fontSize: s(14),
     textAlign: 'center',
   },
   title: {
-    fontSize: 24,
+    fontSize: s(24),
   },
 });
 

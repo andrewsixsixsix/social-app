@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import { colors, fonts } from '@styles';
 import React from 'react';
+import { s, sh } from '@utils';
 
 interface IProps {
   title: string;
@@ -19,7 +20,7 @@ export const SignupHeader: React.FC<IProps> = ({ title }) => {
         style={{ padding: 0 }}
         iconStyle={{ marginRight: 0 }}
         name={'arrow-back'}
-        size={30}
+        size={s(30)}
         underlayColor={colors.transparent}
         onPress={() => router.back()}
       />
@@ -34,20 +35,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingLeft: 15,
-    paddingRight: 10,
-    paddingVertical: 5,
+    paddingLeft: s(15),
+    paddingRight: s(10),
+    paddingVertical: sh(5),
     width: '100%',
   },
   logo: {
     color: colors.black,
     fontFamily: fonts.greatVibesRegular,
-    fontSize: 30,
-    paddingRight: 5,
+    fontSize: s(30),
+    paddingRight: s(5),
   },
   title: {
     color: colors.black,
     fontFamily: fonts.montserratRegular,
-    fontSize: 20,
+    fontSize: s(20),
   },
 });

@@ -2,12 +2,13 @@ import { StyleSheet } from 'react-native';
 
 import { fonts } from './fonts';
 import { colors } from './colors';
+import { s, sh } from '@utils';
 
 export const styles = StyleSheet.create({
   error: {
     color: colors.red,
     fontFamily: fonts.montserratRegular,
-    fontSize: 10,
+    fontSize: s(10),
   },
   safeArea: {
     flex: 1,
@@ -19,7 +20,7 @@ export const signupStyles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.white,
     flex: 1,
-    paddingTop: 40,
-    rowGap: 20,
+    paddingTop: sh(40),
+    rowGap: sh(20),
   },
 });

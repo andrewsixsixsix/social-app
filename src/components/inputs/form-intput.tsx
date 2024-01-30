@@ -12,6 +12,7 @@ import { useController } from 'react-hook-form';
 import { ControllerFieldState, UseControllerProps } from 'react-hook-form/dist/types/controller';
 
 import { colors, cStyles, fonts } from '@styles';
+import { s, sh } from '@utils';
 
 interface IProps extends TextInputProps, UseControllerProps {
   containerStyle?: StyleProp<ViewStyle>;
@@ -49,31 +50,15 @@ const getStyles = (error: ControllerFieldState['error']) =>
     error: {
       alignSelf: 'flex-end',
       position: 'absolute',
-      bottom: -13,
+      bottom: sh(-13),
     },
     input: {
       fontFamily: fonts.montserratRegular,
       borderColor: error ? colors.red : colors.black,
-      borderRadius: 15,
+      borderRadius: s(15),
       borderWidth: 0.5,
-      height: 50,
-      paddingHorizontal: 10,
+      height: sh(50),
+      paddingHorizontal: s(10),
       width: '100%',
     },
   });
-
-// interface IProps extends TextInputProps, UseControllerProps {
-//   containerStyle: StyleProp<ViewStyle>;
-//   error: ControllerFieldState['error'];
-//   defaultValue?: string;
-// }
-
-// export const Input: React.FC<IProps> = ({ containerStyle, error, ...props }) => {
-//   const styles = getStyles(error);
-//   return (
-//     <View style={[styles.container, containerStyle]}>
-//       <TextInput style={styles.input} {...props} cursorColor={colors.black} />
-//       {error ? <Text style={[cStyles.error, styles.error]}>{error.message}</Text> : null}
-//     </View>
-//   );
-// };

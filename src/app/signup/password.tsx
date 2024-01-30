@@ -1,9 +1,9 @@
 import { View } from 'react-native';
 import { router } from 'expo-router';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import { UseControllerProps } from 'react-hook-form/dist/types/controller';
 
 import { Button, FormInput } from '@components';
-import { UseControllerProps } from 'react-hook-form/dist/types/controller';
 import { signupStyles } from '@styles';
 
 interface IFormData extends Record<string, string> {

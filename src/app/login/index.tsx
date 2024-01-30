@@ -5,6 +5,7 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { Button, FormInput, SafeArea, Social } from '@components';
 import { colors, fonts } from '@styles';
 import { regex } from '@constants';
+import { s, sh } from '@utils';
 
 interface IFormData {
   username: string;
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
   },
   inputs: {
     alignItems: 'center',
-    rowGap: 20,
+    rowGap: sh(20),
     width: '100%',
   },
   link: {
@@ -99,18 +100,12 @@ const styles = StyleSheet.create({
   },
   signupPrompt: {
     flexDirection: 'row',
-    marginTop: 20,
+    marginTop: sh(20),
   },
   text: {
     color: colors.black,
     fontFamily: fonts.montserratRegular,
-    fontSize: 14,
-  },
-  title: {
-    fontFamily: fonts.greatVibesRegular,
-    fontSize: 60,
-    marginVertical: 20,
-    paddingHorizontal: 10,
+    fontSize: s(14),
   },
 });
 
