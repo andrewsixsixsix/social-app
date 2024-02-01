@@ -18,18 +18,16 @@ const minimumDate = () => {
   const day = new Date().getDate();
   return new Date(year, month, day);
 };
-const formatDate = (date: Date) => {
-  const offset = new Date().getTimezoneOffset();
-  date.setTime(date.getTime() - offset * 60 * 1000);
-  return date.toISOString().split('T')[0];
-};
 
 const Birthday = () => {
   const [dateOfBirth, setDateOfBirth] = useState<Date>(new Date(2000, 0, 1));
 
   const submit = () => {
-    const date = formatDate(dateOfBirth);
-    console.log(date);
+    const utcDate = new Date(
+      Date.UTC(dateOfBirth.getFullYear(), dateOfBirth.getMonth(), dateOfBirth.getDate()),
+    );
+    const dateString = utcDate.toISOString().split('T')[0];
+    console.log(dateString);
     router.navigate('/signup/password');
   };
 
