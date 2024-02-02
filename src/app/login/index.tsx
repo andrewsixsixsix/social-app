@@ -3,9 +3,10 @@ import { Link } from 'expo-router';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 import { Button, FormInput, SafeArea, Social } from '@components';
-import { colors, fonts } from '@styles';
+import { fonts, useTheme } from '@styles';
 import { regex } from '@constants';
 import { s, sh } from '@utils';
+import { Theme } from '@types';
 
 interface IFormData {
   username: string;
@@ -42,6 +43,8 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = form;
+
+  const styles = getStyles(useTheme());
 
   const submit: SubmitHandler<IFormData> = (data) => {
     console.log(data);
@@ -84,29 +87,30 @@ const Login = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    backgroundColor: colors.white,
-    flex: 1,
-  },
-  inputs: {
-    alignItems: 'center',
-    rowGap: sh(20),
-    width: '100%',
-  },
-  link: {
-    textDecorationLine: 'underline',
-  },
-  signupPrompt: {
-    flexDirection: 'row',
-    marginTop: sh(20),
-  },
-  text: {
-    color: colors.black,
-    fontFamily: fonts.montserratRegular,
-    fontSize: s(14),
-  },
-});
+const getStyles = (theme: Theme) =>
+  StyleSheet.create({
+    container: {
+      alignItems: 'center',
+      backgroundColor: theme.background,
+      flex: 1,
+    },
+    inputs: {
+      alignItems: 'center',
+      rowGap: sh(20),
+      width: '100%',
+    },
+    link: {
+      textDecorationLine: 'underline',
+    },
+    signupPrompt: {
+      flexDirection: 'row',
+      marginTop: sh(20),
+    },
+    text: {
+      color: theme.text,
+      fontFamily: fonts.montserratRegular,
+      fontSize: s(14),
+    },
+  });
 
 export default Login;
