@@ -2,21 +2,25 @@ import { StyleSheet, Text, View } from 'react-native';
 import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
-import { colors, fonts } from '@styles';
+import { colors, fonts, useTheme } from '@styles';
 import React from 'react';
 import { s, sh } from '@utils';
+import { Theme } from '@types';
 
 interface IProps {
   title: string;
 }
 
 export const SignupHeader: React.FC<IProps> = ({ title }) => {
+  const theme = useTheme();
+  const styles = getStyles(theme);
+
   return (
     <View style={styles.container}>
       <Ionicons.Button
         activeOpacity={0.6}
         backgroundColor={colors.transparent}
-        color={colors.black}
+        color={theme.primary}
         style={{ padding: 0 }}
         iconStyle={{ marginRight: 0 }}
         name={'arrow-back'}
@@ -30,25 +34,27 @@ export const SignupHeader: React.FC<IProps> = ({ title }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingLeft: s(15),
-    paddingRight: s(10),
-    paddingVertical: sh(5),
-    width: '100%',
-  },
-  logo: {
-    color: colors.black,
-    fontFamily: fonts.greatVibesRegular,
-    fontSize: s(30),
-    paddingRight: s(5),
-  },
-  title: {
-    color: colors.black,
-    fontFamily: fonts.montserratRegular,
-    fontSize: s(20),
-  },
-});
+const getStyles = (theme: Theme) =>
+  StyleSheet.create({
+    container: {
+      alignItems: 'center',
+      backgroundColor: theme.background,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      paddingLeft: s(15),
+      paddingRight: s(10),
+      paddingVertical: sh(5),
+      width: '100%',
+    },
+    logo: {
+      color: theme.primary,
+      fontFamily: fonts.greatVibesRegular,
+      fontSize: s(30),
+      paddingRight: s(5),
+    },
+    title: {
+      color: theme.text,
+      fontFamily: fonts.montserratRegular,
+      fontSize: s(20),
+    },
+  });

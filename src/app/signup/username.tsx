@@ -4,7 +4,7 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 import { Button, FormInput } from '@components';
 import { regex } from '@constants';
-import { signupStyles } from '@styles';
+import { signupStyles, useTheme } from '@styles';
 
 interface IFormData {
   username: string;
@@ -26,6 +26,7 @@ const usernameRules = {
 };
 
 const Username = () => {
+  const theme = useTheme();
   const form = useForm<IFormData>({ defaultValues: { username: '' } });
   const {
     formState: { errors },
@@ -40,7 +41,7 @@ const Username = () => {
   const disabled = Object.keys(errors).length > 0;
 
   return (
-    <View style={signupStyles.container}>
+    <View style={[signupStyles.container, { backgroundColor: theme.background }]}>
       <FormProvider {...form}>
         <FormInput
           autoCapitalize={'none'}

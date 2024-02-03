@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import {
   StyleProp,
   StyleSheet,
@@ -11,8 +11,9 @@ import {
 import { useController } from 'react-hook-form';
 import { ControllerFieldState, UseControllerProps } from 'react-hook-form/dist/types/controller';
 
-import { colors, cStyles, fonts } from '@styles';
+import { cStyles, fonts, useTheme } from '@styles';
 import { s, sh } from '@utils';
+import { Theme } from '@types';
 
 interface IProps extends TextInputProps, UseControllerProps {
   containerStyle?: StyleProp<ViewStyle>;
@@ -26,12 +27,14 @@ export const FormInput: React.FC<IProps> = ({ containerStyle, ...props }) => {
     fieldState: { error },
   } = useController({ name, rules, defaultValue });
 
-  const styles = useMemo(() => getStyles(error), [error]);
+  const theme = useTheme();
+  const styles = getStyles(error, theme);
 
   return (
     <View style={[styles.container, containerStyle]}>
       <TextInput
-        cursorColor={colors.black}
+        cursorColor={theme.primary}
+        placeholderTextColor={theme.placeholder}
         style={styles.input}
         {...field}
         onChangeText={field.onChange}
@@ -42,19 +45,21 @@ export const FormInput: React.FC<IProps> = ({ containerStyle, ...props }) => {
   );
 };
 
-const getStyles = (error: ControllerFieldState['error']) =>
+const getStyles = (error: ControllerFieldState['error'], theme: Theme) =>
   StyleSheet.create({
     container: {
       width: '70%',
     },
     error: {
       alignSelf: 'flex-end',
+      color: theme.error,
       position: 'absolute',
       bottom: sh(-13),
     },
     input: {
+      color: theme.text,
       fontFamily: fonts.montserratRegular,
-      borderColor: error ? colors.red : colors.black,
+      borderColor: error ? theme.error : theme.primary,
       borderRadius: s(15),
       borderWidth: 0.5,
       height: sh(50),

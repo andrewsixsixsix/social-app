@@ -4,7 +4,7 @@ import { router } from 'expo-router';
 import DatePicker from 'react-native-date-picker';
 
 import { Button } from '@components';
-import { signupStyles } from '@styles';
+import { signupStyles, useTheme } from '@styles';
 
 const maximumDate = () => {
   const year = new Date().getFullYear() - 5;
@@ -20,6 +20,7 @@ const minimumDate = () => {
 };
 
 const Birthday = () => {
+  const theme = useTheme();
   const [dateOfBirth, setDateOfBirth] = useState<Date>(new Date(2000, 0, 1));
 
   const submit = () => {
@@ -32,7 +33,7 @@ const Birthday = () => {
   };
 
   return (
-    <View style={signupStyles.container}>
+    <View style={[signupStyles.container, { backgroundColor: theme.background }]}>
       <DatePicker
         date={dateOfBirth}
         maximumDate={maximumDate()}

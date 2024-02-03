@@ -4,7 +4,7 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { UseControllerProps } from 'react-hook-form/dist/types/controller';
 
 import { Button, FormInput } from '@components';
-import { signupStyles } from '@styles';
+import { signupStyles, useTheme } from '@styles';
 
 interface IFormData extends Record<string, string> {
   password: string;
@@ -40,6 +40,7 @@ const passwordConfirmationRules: TPasswordConfirmationRules = {
 };
 
 const Password = () => {
+  const theme = useTheme();
   const form = useForm<IFormData>({ defaultValues: { password: '', passwordConfirmation: '' } });
   const {
     formState: { errors },
@@ -54,7 +55,7 @@ const Password = () => {
   const disabled = Object.keys(errors).length > 0;
 
   return (
-    <View style={signupStyles.container}>
+    <View style={[signupStyles.container, { backgroundColor: theme.background }]}>
       <FormProvider {...form}>
         <FormInput
           autoCapitalize={'none'}

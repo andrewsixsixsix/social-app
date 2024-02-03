@@ -1,10 +1,10 @@
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { router } from 'expo-router';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 import { Button, FormInput } from '@components';
 import { regex } from '@constants';
-import { colors, signupStyles } from '@styles';
+import { signupStyles, useTheme } from '@styles';
 
 interface IFormData {
   email: string;
@@ -26,6 +26,7 @@ const emailRules = {
 };
 
 const Email = () => {
+  const theme = useTheme();
   const form = useForm<IFormData>({ defaultValues: { email: '' } });
   const {
     formState: { errors },
@@ -40,7 +41,7 @@ const Email = () => {
   const disabled = Object.keys(errors).length > 0;
 
   return (
-    <View style={signupStyles.container}>
+    <View style={[signupStyles.container, { backgroundColor: theme.background }]}>
       <FormProvider {...form}>
         <FormInput
           autoCapitalize={'none'}
