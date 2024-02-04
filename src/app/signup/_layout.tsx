@@ -34,7 +34,7 @@ const SignupLayout = () => {
   return (
     <SafeArea>
       <SignupHeader title={getScreenTitle()} />
-      <Stack screenOptions={{ headerShown: false }} />
+      <Stack screenOptions={{ headerShown: false, animation: 'simple_push' }} />
     </SafeArea>
   );
 };
