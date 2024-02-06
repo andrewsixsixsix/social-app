@@ -1,6 +1,6 @@
 import { Stack, usePathname } from 'expo-router';
 
-import { SafeArea, SignupHeader } from '@components';
+import { SafeArea, SignupHeader } from '@/components';
 
 const SignupLayout = () => {
   const path = usePathname();

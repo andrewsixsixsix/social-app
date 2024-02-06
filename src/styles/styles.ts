@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import { fonts } from './fonts';
-import { s, sh } from '@utils';
+import { s, sh } from '@/utils';
 
 export const styles = StyleSheet.create({
   error: {

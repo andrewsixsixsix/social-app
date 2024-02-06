@@ -2,7 +2,7 @@ import { Appearance } from 'react-native';
 import { createTheming } from '@callstack/react-theme-provider';
 
 import { colors } from './colors';
-import { Theme } from '@types';
+import { Theme } from '@/types';
 
 const theme = {
   light: {

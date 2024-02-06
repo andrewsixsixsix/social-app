@@ -2,9 +2,9 @@ import { View } from 'react-native';
 import { router } from 'expo-router';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
-import { Button, FormInput } from '@components';
-import { regex } from '@constants';
-import { signupStyles, useTheme } from '@styles';
+import { Button, FormInput } from '@/components';
+import { regex } from '@/constants';
+import { signupStyles, useTheme } from '@/styles';
 
 interface IFormData {
   email: string;

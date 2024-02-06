@@ -3,7 +3,7 @@ import { Keyboard } from 'react-native';
 import { SafeAreaViewProps } from 'react-native-safe-area-context/src/SafeAreaView';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { cStyles, useTheme } from '@styles';
+import { cStyles, useTheme } from '@/styles';
 
 export const SafeArea: React.FC<SafeAreaViewProps> = ({ children, style, ...props }) => {
   const theme = useTheme();

@@ -2,11 +2,11 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Link } from 'expo-router';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
-import { Button, FormInput, SafeArea, Social } from '@components';
-import { fonts, useTheme } from '@styles';
-import { regex } from '@constants';
-import { s, sh } from '@utils';
-import { Theme } from '@types';
+import { Button, FormInput, SafeArea, Social } from '@/components';
+import { fonts, useTheme } from '@/styles';
+import { regex } from '@/constants';
+import { s, sh } from '@/utils';
+import { Theme } from '@/types';
 
 interface IFormData {
   username: string;

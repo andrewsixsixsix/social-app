@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import { Button, Social } from '@components';
-import { fonts, signupStyles, useTheme } from '@styles';
-import { s } from '@utils';
-import { Theme } from '@types';
+import { Button, Social } from '@/components';
+import { fonts, signupStyles, useTheme } from '@/styles';
+import { s } from '@/utils';
+import { Theme } from '@/types';
 
 const Finish = () => {
   const styles = getStyles(useTheme());

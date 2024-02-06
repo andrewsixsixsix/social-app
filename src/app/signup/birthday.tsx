@@ -3,8 +3,8 @@ import { View } from 'react-native';
 import { router } from 'expo-router';
 import DatePicker from 'react-native-date-picker';
 
-import { Button } from '@components';
-import { signupStyles, useTheme } from '@styles';
+import { Button } from '@/components';
+import { signupStyles, useTheme } from '@/styles';
 
 const maximumDate = () => {
   const year = new Date().getFullYear() - 5;

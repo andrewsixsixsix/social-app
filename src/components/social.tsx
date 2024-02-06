@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 
-import { fonts, useTheme } from '@styles';
-import { s, sh } from '@utils';
+import { fonts, useTheme } from '@/styles';
+import { s, sh } from '@/utils';
 
 interface IProps {
   fontSize: number;

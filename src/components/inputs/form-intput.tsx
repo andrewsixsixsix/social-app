@@ -11,9 +11,9 @@ import {
 import { useController } from 'react-hook-form';
 import { ControllerFieldState, UseControllerProps } from 'react-hook-form/dist/types/controller';
 
-import { cStyles, fonts, useTheme } from '@styles';
-import { s, sh } from '@utils';
-import { Theme } from '@types';
+import { cStyles, fonts, useTheme } from '@/styles';
+import { s, sh } from '@/utils';
+import { Theme } from '@/types';
 
 interface IProps extends TextInputProps, UseControllerProps {
   containerStyle?: StyleProp<ViewStyle>;

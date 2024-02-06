@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ISignup } from '@types';
-import { RootState } from '../index';
+import { ISignup } from '@/types';
+import { RootState } from '@/store';
 
 type TPayloadActionString = PayloadAction<string>;
 type TPayloadActionName = PayloadAction<{

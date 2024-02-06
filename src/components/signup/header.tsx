@@ -1,11 +1,11 @@
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
-import { colors, fonts, useTheme } from '@styles';
-import React from 'react';
-import { s, sh } from '@utils';
-import { Theme } from '@types';
+import { colors, fonts, useTheme } from '@/styles';
+import { s, sh } from '@/utils';
+import { Theme } from '@/types';
 
 interface IProps {
   title: string;

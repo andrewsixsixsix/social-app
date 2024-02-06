@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Stack } from 'expo-router';
 
 import { ThemeProvider } from '@styles';
+import { ThemeProvider } from '@/styles';
 
 const AppLayout = () => {
   return (

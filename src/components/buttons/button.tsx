@@ -1,10 +1,10 @@
 import React from 'react';
 import { PressableProps, StyleSheet, Text } from 'react-native';
 
-import { fonts, useTheme } from '@styles';
+import { fonts, useTheme } from '@/styles';
 import { PressableWrapper } from './pressable-wrapper';
-import { s, sh } from '@utils';
-import { Theme } from '@types';
+import { s, sh } from '@/utils';
+import { Theme } from '@/types';
 
 interface IProps extends PressableProps {
   title: string;
