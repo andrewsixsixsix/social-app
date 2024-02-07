@@ -5,6 +5,8 @@ import { UseControllerProps } from 'react-hook-form/dist/types/controller';
 
 import { Button, FormInput } from '@/components';
 import { signupStyles, useTheme } from '@/styles';
+import { useAppDispatch } from '@/store/hooks';
+import { password } from '@/store/signup/slice';
 
 interface IFormData extends Record<string, string> {
   password: string;
@@ -41,6 +43,7 @@ const passwordConfirmationRules: TPasswordConfirmationRules = {
 
 const Password = () => {
   const theme = useTheme();
+  const dispatch = useAppDispatch();
   const form = useForm<IFormData>({ defaultValues: { password: '', passwordConfirmation: '' } });
   const {
     formState: { errors },
@@ -48,7 +51,7 @@ const Password = () => {
   } = form;
 
   const submit: SubmitHandler<IFormData> = (data) => {
-    console.log(data);
+    dispatch(password({ ...data }));
     router.navigate('/signup/finish');
   };
 

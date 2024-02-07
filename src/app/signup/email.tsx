@@ -5,6 +5,8 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { Button, FormInput } from '@/components';
 import { regex } from '@/constants';
 import { signupStyles, useTheme } from '@/styles';
+import { email } from '@/store/signup/slice';
+import { useAppDispatch } from '@/store/hooks';
 
 interface IFormData {
   email: string;
@@ -27,6 +29,7 @@ const emailRules = {
 
 const Email = () => {
   const theme = useTheme();
+  const dispatch = useAppDispatch();
   const form = useForm<IFormData>({ defaultValues: { email: '' } });
   const {
     formState: { errors },
@@ -34,7 +37,7 @@ const Email = () => {
   } = form;
 
   const submit: SubmitHandler<IFormData> = (data) => {
-    console.log(data);
+    dispatch(email(data.email));
     router.navigate('/signup/name');
   };
 

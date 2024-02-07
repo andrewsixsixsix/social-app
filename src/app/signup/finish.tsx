@@ -4,10 +4,12 @@ import { Button, Social } from '@/components';
 import { fonts, signupStyles, useTheme } from '@/styles';
 import { s } from '@/utils';
 import { Theme } from '@/types';
+import { useAppSelector } from '@/store/hooks';
+import { selectSignup } from '@/store/signup/slice';
 
 const Finish = () => {
+  const signup = useAppSelector(selectSignup);
   const styles = getStyles(useTheme());
-  const email = 'email@mail.com';
 
   const submit = () => {};
 
@@ -18,7 +20,7 @@ const Finish = () => {
         {'Tap the button below to complete the signup and join\n'}
         <Social fontSize={40} />
       </Text>
-      <Text style={styles.text}>{`We will send you a verification email to\n${email}`}</Text>
+      <Text style={styles.text}>{`We will send you a verification email to\n${signup.email}`}</Text>
       <Button title={'Finish'} onPress={submit} />
     </View>
   );

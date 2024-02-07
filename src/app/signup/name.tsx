@@ -5,6 +5,8 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { Button, FormInput } from '@/components';
 import { regex } from '@/constants';
 import { signupStyles, useTheme } from '@/styles';
+import { useAppDispatch } from '@/store/hooks';
+import { name } from '@/store/signup/slice';
 
 interface IFormData {
   firstName: string;
@@ -35,6 +37,7 @@ const lastNameRules = {
 
 const Name = () => {
   const theme = useTheme();
+  const dispatch = useAppDispatch();
   const form = useForm<IFormData>({ defaultValues: { firstName: '', lastName: '' } });
   const {
     formState: { errors },
@@ -42,7 +45,7 @@ const Name = () => {
   } = form;
 
   const submit: SubmitHandler<IFormData> = (data) => {
-    console.log(data);
+    dispatch(name({ firstName: data.firstName, lastName: data.lastName || null }));
     router.navigate('/signup/birthday');
   };
 
