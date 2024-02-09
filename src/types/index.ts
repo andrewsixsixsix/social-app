@@ -8,6 +8,15 @@ export interface ISignup {
   passwordConfirmation: string;
 }
 
+export interface IUser {
+  id: number;
+  firstName: string;
+  lastName: string | null;
+  username: string;
+  email: string;
+  dateOfBirth: string;
+}
+
 export type Theme = {
   background: string;
   buttonText: string;
