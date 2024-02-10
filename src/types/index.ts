@@ -9,7 +9,6 @@ export interface ISignup {
 }
 
 export interface IUser {
-  id: number;
   firstName: string;
   lastName: string | null;
   username: string;

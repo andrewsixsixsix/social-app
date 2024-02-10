@@ -5,7 +5,7 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { Button, FormInput } from '@/components';
 import { regex } from '@/constants';
 import { signupStyles, useTheme } from '@/styles';
-import { email } from '@/store/signup/slice';
+import { email } from '@/store/slices/auth';
 import { useAppDispatch } from '@/store/hooks';
 
 interface IFormData {

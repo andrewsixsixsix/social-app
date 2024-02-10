@@ -7,6 +7,9 @@ import { fonts, useTheme } from '@/styles';
 import { regex } from '@/constants';
 import { s, sh } from '@/utils';
 import { Theme } from '@/types';
+import { useLoginMutation } from '@/api/auth';
+import { useAppDispatch } from '@/store/hooks';
+import { setUser } from '@/store/slices/user';
 
 interface IFormData {
   username: string;
@@ -33,6 +36,9 @@ const passwordRules = {
 };
 
 const Login = () => {
+  const [login, { isLoading }] = useLoginMutation();
+  const dispatch = useAppDispatch();
+
   const form = useForm<IFormData>({
     defaultValues: {
       username: '',
@@ -46,11 +52,13 @@ const Login = () => {
 
   const styles = getStyles(useTheme());
 
-  const submit: SubmitHandler<IFormData> = (data) => {
-    console.log(data);
+  const submit: SubmitHandler<IFormData> = async (data) => {
+    const { user, token } = await login(data).unwrap();
+    dispatch(setUser(user));
+    // store token in secure storage
   };
 
-  const disabled = Object.keys(errors).length > 0;
+  const disabled = Object.keys(errors).length > 0 || isLoading;
 
   return (
     <SafeArea>

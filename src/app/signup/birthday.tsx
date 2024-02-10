@@ -6,7 +6,7 @@ import DatePicker from 'react-native-date-picker';
 import { Button } from '@/components';
 import { signupStyles, useTheme } from '@/styles';
 import { useAppDispatch } from '@/store/hooks';
-import { dateOfBirth } from '@/store/signup/slice';
+import { dateOfBirth } from '@/store/slices/auth';
 
 const maximumDate = () => {
   const year = new Date().getFullYear() - 5;

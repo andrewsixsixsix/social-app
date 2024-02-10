@@ -6,7 +6,7 @@ import { UseControllerProps } from 'react-hook-form/dist/types/controller';
 import { Button, FormInput } from '@/components';
 import { signupStyles, useTheme } from '@/styles';
 import { useAppDispatch } from '@/store/hooks';
-import { password } from '@/store/signup/slice';
+import { password } from '@/store/slices/auth';
 
 interface IFormData extends Record<string, string> {
   password: string;

@@ -4,14 +4,23 @@ import { Button, Social } from '@/components';
 import { fonts, signupStyles, useTheme } from '@/styles';
 import { s } from '@/utils';
 import { Theme } from '@/types';
-import { useAppSelector } from '@/store/hooks';
-import { selectSignup } from '@/store/signup/slice';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { selectSignup } from '@/store/slices/auth';
+import { useSignupMutation } from '@/api/auth';
+import { setUser } from '@/store/slices/user';
 
 const Finish = () => {
-  const signup = useAppSelector(selectSignup);
+  const signupData = useAppSelector(selectSignup);
+  const [signup] = useSignupMutation();
+  const dispatch = useAppDispatch();
+
   const styles = getStyles(useTheme());
 
-  const submit = () => {};
+  const submit = async () => {
+    const { user, token } = await signup(signupData).unwrap();
+    dispatch(setUser(user));
+    // store token in secure storage
+  };
 
   return (
     <View style={[signupStyles.container, styles.container]}>
@@ -20,7 +29,9 @@ const Finish = () => {
         {'Tap the button below to complete the signup and join\n'}
         <Social fontSize={40} />
       </Text>
-      <Text style={styles.text}>{`We will send you a verification email to\n${signup.email}`}</Text>
+      <Text style={styles.text}>
+        {`We will send you a verification email to\n${signupData.email}`}
+      </Text>
       <Button title={'Finish'} onPress={submit} />
     </View>
   );

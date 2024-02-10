@@ -6,7 +6,7 @@ import { Button, FormInput } from '@/components';
 import { regex } from '@/constants';
 import { signupStyles, useTheme } from '@/styles';
 import { useAppDispatch } from '@/store/hooks';
-import { username } from '@/store/signup/slice';
+import { username } from '@/store/slices/auth';
 
 interface IFormData {
   username: string;
