@@ -7,6 +7,8 @@ import { regex } from '@/constants';
 import { signupStyles, useTheme } from '@/styles';
 import { useAppDispatch } from '@/store/hooks';
 import { username } from '@/store/slices/auth';
+import { useIsUsernameExistsMutation } from '@/api/user';
+import { isApiError } from '@/types/guards';
 
 interface IFormData {
   username: string;
@@ -29,16 +31,27 @@ const usernameRules = {
 
 const Username = () => {
   const theme = useTheme();
+
+  const [isUsernameExists] = useIsUsernameExistsMutation();
   const dispatch = useAppDispatch();
+
   const form = useForm<IFormData>({ defaultValues: { username: '' } });
   const {
     formState: { errors },
     handleSubmit,
+    setError,
   } = form;
 
-  const submit: SubmitHandler<IFormData> = (data) => {
-    dispatch(username(data.username));
-    router.navigate('/signup/email');
+  const submit: SubmitHandler<IFormData> = async (data) => {
+    try {
+      await isUsernameExists(data).unwrap();
+      dispatch(username(data.username));
+      router.navigate('/signup/email');
+    } catch (err: unknown) {
+      if (isApiError(err)) {
+        setError('username', { message: err.message });
+      }
+    }
   };
 
   const disabled = Object.keys(errors).length > 0;

@@ -1,3 +1,8 @@
+export interface IApiError {
+  status: number;
+  message: string;
+}
+
 export interface ISignup {
   username: string;
   email: string;
