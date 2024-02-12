@@ -6,18 +6,21 @@ import { asyncStorage, s } from '@/utils';
 import { Theme } from '@/types';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { selectSignup } from '@/store/slices/auth';
-import { useSignupMutation } from '@/api/auth';
+import { useLoginMutation, useSignupMutation } from '@/api/auth';
 import { setUser } from '@/store/slices/user';
 
 const Finish = () => {
   const signupData = useAppSelector(selectSignup);
   const [signup] = useSignupMutation();
+  const [login] = useLoginMutation();
   const dispatch = useAppDispatch();
 
   const styles = getStyles(useTheme());
 
   const submit = async () => {
-    const { user, authToken } = await signup(signupData).unwrap();
+    await signup(signupData);
+    const credentials = { username: signupData.username, password: signupData.password };
+    const { user, authToken } = await login(credentials).unwrap();
     dispatch(setUser(user));
     await asyncStorage.setAuthToken(authToken);
   };
