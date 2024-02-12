@@ -5,7 +5,7 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { Button, FormInput, SafeArea, Social } from '@/components';
 import { fonts, useTheme } from '@/styles';
 import { regex } from '@/constants';
-import { s, sh } from '@/utils';
+import { asyncStorage, s, sh } from '@/utils';
 import { Theme } from '@/types';
 import { useLoginMutation } from '@/api/auth';
 import { useAppDispatch } from '@/store/hooks';
@@ -53,9 +53,9 @@ const Login = () => {
   const styles = getStyles(useTheme());
 
   const submit: SubmitHandler<IFormData> = async (data) => {
-    const { user, token } = await login(data).unwrap();
+    const { user, authToken } = await login(data).unwrap();
     dispatch(setUser(user));
-    // store token in secure storage
+    await asyncStorage.setAuthToken(authToken);
   };
 
   const disabled = Object.keys(errors).length > 0 || isLoading;

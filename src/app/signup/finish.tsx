@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { Button, Social } from '@/components';
 import { fonts, signupStyles, useTheme } from '@/styles';
-import { s } from '@/utils';
+import { asyncStorage, s } from '@/utils';
 import { Theme } from '@/types';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { selectSignup } from '@/store/slices/auth';
@@ -17,9 +17,9 @@ const Finish = () => {
   const styles = getStyles(useTheme());
 
   const submit = async () => {
-    const { user, token } = await signup(signupData).unwrap();
+    const { user, authToken } = await signup(signupData).unwrap();
     dispatch(setUser(user));
-    // store token in secure storage
+    await asyncStorage.setAuthToken(authToken);
   };
 
   return (

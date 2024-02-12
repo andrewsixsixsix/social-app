@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { http } from '@/constants';
+import { asyncStorage } from '@/utils';
 
 interface IUsernameExists {
   username: string;
@@ -14,11 +15,9 @@ export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:6969/api/v1',
-    prepareHeaders: (headers, { getState }) => {
-      const token = ''; // 'Bearer ...'
-      if (token) {
-        headers.set(http.headers.AUTHORIZATION, token);
-      }
+    prepareHeaders: async (headers) => {
+      const authToken = (await asyncStorage.getAuthToken()) ?? '';
+      headers.set(http.headers.AUTHORIZATION, authToken);
       return headers;
     },
   }),

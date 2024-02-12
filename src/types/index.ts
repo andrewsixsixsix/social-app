@@ -21,6 +21,8 @@ export interface IUser {
   dateOfBirth: string;
 }
 
+export type AsyncStorageKey = 'AUTH_TOKEN';
+
 export type Theme = {
   background: string;
   buttonText: string;

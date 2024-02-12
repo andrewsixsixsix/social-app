@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { ISignup, IUser } from '@/types';
 import { http } from '@/constants';
+import { asyncStorage } from '@/utils';
 
 interface ILoginRequest {
   username: string;
@@ -10,18 +11,16 @@ interface ILoginRequest {
 
 interface ILoginResponse {
   user: IUser;
-  token: string;
+  authToken: string;
 }
 
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:6969/api/v1',
-    prepareHeaders: (headers) => {
-      const token = ''; // 'Bearer ...'
-      if (token) {
-        headers.set(http.headers.AUTHORIZATION, token);
-      }
+    prepareHeaders: async (headers) => {
+      const authToken = (await asyncStorage.getAuthToken()) ?? '';
+      headers.set(http.headers.AUTHORIZATION, authToken);
       return headers;
     },
   }),
@@ -33,8 +32,8 @@ export const authApi = createApi({
         body: credentials,
       }),
       transformResponse: (user: IUser, meta, _) => {
-        const token = meta?.response?.headers.get(http.headers.AUTHORIZATION) ?? '';
-        return { user, token };
+        const authToken = meta?.response?.headers.get(http.headers.AUTHORIZATION) ?? '';
+        return { user, authToken };
       },
     }),
     signup: builder.mutation<ILoginResponse, ISignup>({
@@ -44,8 +43,8 @@ export const authApi = createApi({
         body: signup,
       }),
       transformResponse: (user: IUser, meta, _) => {
-        const token = meta?.response?.headers.get(http.headers.AUTHORIZATION) ?? '';
-        return { user, token };
+        const authToken = meta?.response?.headers.get(http.headers.AUTHORIZATION) ?? '';
+        return { user, authToken };
       },
     }),
   }),
