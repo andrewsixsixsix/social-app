@@ -20,7 +20,7 @@ export const authApi = createApi({
     baseUrl: 'http://localhost:6969/api/v1',
     prepareHeaders: async (headers) => {
       const authToken = (await asyncStorage.getAuthToken()) ?? '';
-      headers.set(http.headers.AUTHORIZATION, authToken);
+      headers.set(http.header.AUTHORIZATION, authToken);
       return headers;
     },
   }),
@@ -32,9 +32,10 @@ export const authApi = createApi({
         body: credentials,
       }),
       transformResponse: (user: IUser, meta, _) => {
-        const authToken = meta?.response?.headers.get(http.headers.AUTHORIZATION) ?? '';
+        const authToken = meta?.response?.headers.get(http.header.AUTHORIZATION) ?? '';
         return { user, authToken };
       },
+      transformErrorResponse: (err) => err.data,
     }),
     signup: builder.mutation<ILoginResponse, ISignup>({
       query: (signup) => ({
@@ -43,9 +44,10 @@ export const authApi = createApi({
         body: signup,
       }),
       transformResponse: (user: IUser, meta, _) => {
-        const authToken = meta?.response?.headers.get(http.headers.AUTHORIZATION) ?? '';
+        const authToken = meta?.response?.headers.get(http.header.AUTHORIZATION) ?? '';
         return { user, authToken };
       },
+      transformErrorResponse: (err) => err.data,
     }),
   }),
 });

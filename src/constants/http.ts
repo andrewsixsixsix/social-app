@@ -1,5 +1,10 @@
-const headers = {
+const header = {
   AUTHORIZATION: 'Authorization',
 };
 
-export const http = { headers };
+const status = {
+  NOT_FOUND: 404,
+  UNAUTHORIZED: 401,
+};
+
+export const http = { header, status };

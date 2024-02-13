@@ -17,7 +17,7 @@ export const userApi = createApi({
     baseUrl: 'http://localhost:6969/api/v1',
     prepareHeaders: async (headers) => {
       const authToken = (await asyncStorage.getAuthToken()) ?? '';
-      headers.set(http.headers.AUTHORIZATION, authToken);
+      headers.set(http.header.AUTHORIZATION, authToken);
       return headers;
     },
   }),

@@ -2,27 +2,23 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { Button, Social } from '@/components';
 import { fonts, signupStyles, useTheme } from '@/styles';
-import { asyncStorage, s } from '@/utils';
+import { s } from '@/utils';
 import { Theme } from '@/types';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { useAppSelector } from '@/store/hooks';
 import { selectSignup } from '@/store/slices/auth';
-import { useLoginMutation, useSignupMutation } from '@/api/auth';
-import { setUser } from '@/store/slices/user';
+import { useSignupMutation } from '@/api/auth';
+import { useAuth } from '@/hooks';
 
 const Finish = () => {
   const signupData = useAppSelector(selectSignup);
   const [signup] = useSignupMutation();
-  const [login] = useLoginMutation();
-  const dispatch = useAppDispatch();
+  const { login } = useAuth();
 
   const styles = getStyles(useTheme());
 
   const submit = async () => {
     await signup(signupData);
-    const credentials = { username: signupData.username, password: signupData.password };
-    const { user, authToken } = await login(credentials).unwrap();
-    dispatch(setUser(user));
-    await asyncStorage.setAuthToken(authToken);
+    await login(signupData.username, signupData.password);
   };
 
   return (

@@ -4,12 +4,11 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 import { Button, FormInput, SafeArea, Social } from '@/components';
 import { fonts, useTheme } from '@/styles';
-import { regex } from '@/constants';
-import { asyncStorage, s, sh } from '@/utils';
+import { http, regex } from '@/constants';
+import { s, sh } from '@/utils';
 import { Theme } from '@/types';
-import { useLoginMutation } from '@/api/auth';
-import { useAppDispatch } from '@/store/hooks';
-import { setUser } from '@/store/slices/user';
+import { useAuth } from '@/hooks';
+import { isApiError } from '@/types/guards';
 
 interface IFormData {
   username: string;
@@ -36,8 +35,10 @@ const passwordRules = {
 };
 
 const Login = () => {
-  const [login, { isLoading }] = useLoginMutation();
-  const dispatch = useAppDispatch();
+  const {
+    login,
+    loginState: { isLoading },
+  } = useAuth();
 
   const form = useForm<IFormData>({
     defaultValues: {
@@ -48,14 +49,26 @@ const Login = () => {
   const {
     formState: { errors },
     handleSubmit,
+    setError,
   } = form;
 
   const styles = getStyles(useTheme());
 
   const submit: SubmitHandler<IFormData> = async (data) => {
-    const { user, authToken } = await login(data).unwrap();
-    dispatch(setUser(user));
-    await asyncStorage.setAuthToken(authToken);
+    try {
+      await login(data.username, data.password);
+    } catch (err: unknown) {
+      if (isApiError(err)) {
+        switch (err.status) {
+          case http.status.NOT_FOUND:
+            setError('username', { message: err.message });
+            break;
+          case http.status.UNAUTHORIZED:
+            setError('password', { message: err.message });
+            break;
+        }
+      }
+    }
   };
 
   const disabled = Object.keys(errors).length > 0 || isLoading;
